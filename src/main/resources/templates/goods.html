@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title  th:text="${keyShopNameByGoToShop}"></title>
+</head>
+<body>
+
+<h2 style="color: blue">Вы зашли в магазин <td  th:text="${keyShopNameByGoToShop}"></td> </h2>
+
+<form method="post" action="/addGood">
+    <input type="text" name="goodName" placeholder="Add good's name"/>
+    <input type="text" name="goodPrice" placeholder="Add good's price"/>
+    <button type="submit">Add good</button>
+</form>
+<tr th:each="addGood:${keyAddGood}">
+    <td th:text="${addGood.good_id}"></td>
+    <td th:text="${addGood.goodName}"></td>
+    <td th:text="${addGood.goodPrice}"></td>
+    <!--<td th:text="${addGood.shopName}"></td>-->
+    <br>
+</tr>
+<br>
+<form method="post" action="/showAllGoods">
+    <button type="submit">Show all goods by this shop</button>
+</form>
+
+<tr th:each="showAllGoods:${keyShowAllGoods}">
+    <td th:text="${showAllGoods.goodName}"></td>
+    <td th:text="${showAllGoods.goodPrice}"></td>
+    <td th:text="${showAllGoods.Shops.shopName}"></td>
+
+    <br>
+</tr>
+
+<br>
+<form method="post" action="/findAllGoodsBy">
+    <select name="name1">
+        <option value="byName">By name</option>
+        <option value="byPrice">By price</option>
+    </select>
+    <input type="text" name="name2"/>
+    <button type="submit">Find</button>
+</form>
+<tr th:each="findAllGoodsBy:${keyFindAllGoodsBy}">
+    <td th:text="${findAllGoodsBy.goodName}"></td>
+    <td th:text="${findAllGoodsBy.goodPrice}"></td>
+    <br>
+</tr>
+
+</body>
+</html>
